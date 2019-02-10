@@ -1,0 +1,14 @@
+#cg-link {
+    color: purple;
+}
+
+footer {
+    background-color: lightblue;
+    height: 5em;
+    width: 100%;
+}
+
+.footer-text {
+    font-size: 1.25em;
+    padding-top: 1em;
+}

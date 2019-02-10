@@ -1,0 +1,25 @@
+#brand {
+    font-size: 1.5em;
+    color: darkblue;
+}
+
+.hover-active:hover {
+    background-color: rgb(253, 186, 142);
+}
+
+li:hover, .navbar-brand:hover {
+    font-weight: bold;
+}
+
+#light-active {
+    background-color: rgb(253, 186, 142);
+}
+
+#main-nav {
+    margin-top: 0px;
+}
+
+#navbar {
+    background-color: rgb(252, 119, 30);
+    font-size: 1.5em;
+}

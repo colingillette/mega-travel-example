@@ -1,0 +1,44 @@
+.background-white {
+    background-color: white;
+}
+
+.caption-right {
+    color: black;
+    text-align: right;
+    font-size: 1.5em;
+}
+
+.header-logo {
+    margin-top: 1em;
+    width: 60%;
+}
+
+#home-banner {
+    width: 100%;
+}
+
+html {
+    background-color: rgb(95, 95, 252);
+}
+
+.figure-holder {
+    margin: auto;
+}
+
+.section-header {
+    color: darkblue;
+    font-size: 2.75em;
+}
+
+.tagline {
+    font-size: 1.5em;
+}
+
+.tile-fig {
+    margin-top: 2em;
+}
+
+.tile-img {
+    width: 20em;
+    height: 20em;
+}

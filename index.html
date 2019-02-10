@@ -5,12 +5,106 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Mega Travel</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="styles/main.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="styles/footer.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="styles/nav.css">
   <link rel="shortcut icon" href="img/logo.PNG" type="image/png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-  
+  <!-- Navbar -->
+  <nav id="main-nav" class="navbar-nav navbar-default navbar-fixed-top">
+    <div id="navbar" class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span> 
+        </button>
+        <a id="brand" class="navbar-brand" href="#">Mega Travel</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li id="light-active"><a href="index.html" style="color: black">Home</a></li>
+          <li class="hover-active"><a href="about.html" style="color: black">About Us</a></li>
+          <li class="hover-active"><a href="reservations.html" style="color: black">Reservations</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Page -->
+  <div class="col-sm-2"></div>
+
+  <div class="col-sm-8 background-white">
+    <div class="text-center">
+      <!-- header -->
+      <div class="header">
+        <img class="header-logo" src="img/large-logo.jpg" alt="mega travel agency">
+        <p class="tagline"><i>Making your connection to your dream destination.</i></p>
+      </div>
+
+      <!-- Body -->
+      <div class="body">
+        <figure>
+          <img id="home-banner" src="img/home-banner.jpg" alt="possible desitnation">
+          <figcaption class="caption-right">Just one of your possible options lies above!</figcaption>
+        </figure>
+
+        <h2 class="section-header">Why Mega Travel?</h2>
+        <p class="body-text">
+          Mega Travel is an employee-owned travel agency ran by professionals who just want to get the best deal for you. 
+          Originally created by the mega brothers in 1837, when they saw a need for stage coach chartering that wasn't monoplized
+          by the old money of the time.
+        </p>
+        <p class="body-text">
+          Now, Mega Travel continue the tradition of pushing the savings to you, rather than the profit to companies. The Robinhood of
+          Travel continues to make great strides in the realms of savings.
+        </p>
+
+        <h2 class="section-header">Where Can I Go?</h2>
+        <div class="row text-center">
+          <div class="col-sm-4">
+              <figure class="tile-fig">
+                <img src="img/sydney.jpg" alt="Sydney Opera House, Australia" class="tile-img">
+              </figure>
+              <figure class="tile-fig">
+                <img src="img/rome.jpg" alt="Rome, Italy" class="tile-img">
+              </figure>
+          </div>
+          <div class="col-sm-4">
+            <figure class="tile-fig">
+              <img src="img/beach-hammock.jpg" alt="beach hammock" class="tile-img">
+            </figure>
+            <figure class="tile-fig">
+              <img src="img/ft-lauderdale.jpg" alt="Ft. Lauderdale" class="tile-img">
+            </figure>
+          </div>             
+          <div class="col-sm-4">
+            <figure class="tile-fig">
+              <img src="img/hill-town.jpg" alt="A town on a hill" class="tile-img">
+            </figure>
+            <figure class="tile-fig">
+              <img src="img/meikenos.jpg" alt="Meikenos, Greece" class="tile-img">
+            </figure>
+          </div>
+        </div>
+        <p class="body-text">
+          We have so many desitnations for you to choose from, but just a sample of what we have to offer lies above. Whether it's domestic
+          or international, we'll work as hard as we can to find you the best deal. Why trust other travel companies when you know that ours
+          is the best?
+        </p>
+      </div>
+    </div>
+
+    <div class="footer text-center">
+      <footer>
+          <p class="footer-text">Site Powered by <a id="cg-link" href="https://github.com/colingillette" target="_blank">Colin Gillette</a>.</p>
+        </footer>
+    </div>
+  </div>
+  <div class="col-sm-2"></div>
 </body>
 </html>
