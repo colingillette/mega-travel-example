@@ -6,6 +6,8 @@
   <title>Reservations</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="styles/nav.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="styles/main.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="styles/footer.css">
   <link rel="shortcut icon" href="img/logo.PNG" type="image/png">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -33,6 +35,49 @@
     </div>
   </nav>
 
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8" style="background-color:white;">
+    <div class="row text-center reservation">
+      <h1 class="reservation-header">Make a Reservation</h1>
+      <form class="reservation-form" action="#" method="post">
+        <fieldset>
+          <legend>Customer Name</legend>
+          <label for="firstname">First Name:</label>
+          <input type="text" id="firstname" name="firstname"><br><br>
+          <label for="middlename">Middle Name:</label>
+          <input type="text" id="middlename" name="middlename"><br><br>
+          <label for="lastname">Last Name:</label>
+          <input type="text" id="lastname" name="lastname"><br><br>
+        </fieldset>
+
+        <fieldset>
+          <legend>Destination Information</legend>
+          <label for="destination">Desired Destination:</label>
+          <select name="destination" id="destination">
+            <option value="argentina">Argentina</option>
+            <option value="barcelona">Barcelona</option>
+            <option value="brussels">Brussels</option>
+            <option value="florence">Florence</option>
+            <option value="jamaica">Jamaica</option>
+            <option value="madrid">Madrid</option>
+            <option value="newzealand">New Zealand</option>
+            <option value="paris">Paris</option>
+            <option value="signapore">Signapore</option>
+            <option value="tahiti">Tahiti</option>
+          </select>
+          
+        </fieldset>
+      </form>
+    </div>
+    <div class="row text-center">
+      <div class="footer text-center">
+        <footer>
+            <p class="footer-text">Site Powered by <a id="cg-link" href="https://github.com/colingillette" target="_blank">Colin Gillette</a>.</p>
+          </footer>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-2"></div>
   
 </body>
 </html>

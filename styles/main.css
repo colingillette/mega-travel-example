@@ -8,9 +8,26 @@
     font-size: 1.5em;
 }
 
+form {
+    margin-top: 3em;
+}
+
 .header-logo {
     margin-top: 1em;
     width: 60%;
+}
+
+.history-header {
+    color: darkblue;
+    margin-bottom: 3em;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    border: 5px solid darkblue;
+}
+
+.history-text {
+    font-size: 1.25em;
+    margin-bottom: 2em;
 }
 
 #home-banner {
@@ -25,6 +42,15 @@ html {
     margin: auto;
 }
 
+.main-column {
+    margin-top: 5em;
+    text-align: center;
+}
+
+.reservation {
+    margin-top: 5em;
+}
+
 .section-header {
     color: darkblue;
     font-size: 2.75em;
@@ -32,6 +58,39 @@ html {
 
 .tagline {
     font-size: 1.5em;
+}
+
+.team-caption {
+    font-size: 1.25em;
+    color: black;
+}
+
+.team-column {
+    margin-top: 5em;
+    border: 3px black solid;
+}
+
+.team-desc {
+    padding-top: 2em;
+    width: 80%;
+    text-align: center;
+    margin: auto;
+}
+
+.team-header {
+    color: darkblue;
+    text-align: center;
+}
+
+.team-photo {
+    width: 80%;
+    margin: auto;
+}
+
+.team-slot {
+    border: 1px solid black;
+    margin-top: 5em;
+    text-align: center;
 }
 
 .tile-fig {
