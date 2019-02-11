@@ -2,7 +2,7 @@
     background-color: white;
 }
 
-button {
+.button-submit {
     width: 12em;
     height: 3em;
     border-radius: 10em;
@@ -61,7 +61,7 @@ legend {
 }
 
 .reservation {
-    margin-top: 5em;
+    margin-top: 3em;
 }
 
 .reservation-header {
@@ -112,11 +112,26 @@ legend {
     text-align: center;
 }
 
+#tiles {
+    margin-bottom: 2em;
+}
+
 .tile-fig {
     margin-top: 2em;
 }
 
 .tile-img {
-    width: 20em;
-    height: 20em;
+    width: 75%;
+}
+
+@media only screen and (max-width: 600px) {
+    .tile-img {
+        height: 10em;
+    }
+}
+
+@media only screen and (min-width: 601px) {
+    .tile-img {
+        height: 13em;
+    }
 }
