@@ -2,6 +2,14 @@
     background-color: white;
 }
 
+button {
+    width: 12em;
+    height: 3em;
+    border-radius: 10em;
+    background-color: rgb(252, 119, 30);
+    border-color: darkblue;
+}
+
 .caption-right {
     color: black;
     text-align: right;
@@ -42,6 +50,11 @@ html {
     margin: auto;
 }
 
+legend {
+    color: black;
+    font-weight: bold;
+}
+
 .main-column {
     margin-top: 5em;
     text-align: center;
@@ -49,6 +62,12 @@ html {
 
 .reservation {
     margin-top: 5em;
+}
+
+.reservation-header {
+    color: darkblue;
+    font-size: 4em;
+    font-weight: bolder;
 }
 
 .section-header {
