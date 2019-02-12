@@ -21,8 +21,8 @@ form {
 }
 
 .header-logo {
-    margin-top: 1em;
-    width: 60%;
+    margin-top: 3em;
+    width: 50%;
 }
 
 .history-header {
@@ -40,6 +40,7 @@ form {
 
 #home-banner {
     width: 100%;
+    margin: auto;
 }
 
 html {
@@ -61,7 +62,7 @@ legend {
 }
 
 .reservation {
-    margin-top: 3em;
+    margin-top: 2em;
 }
 
 .reservation-header {
@@ -120,18 +121,44 @@ legend {
     margin-top: 2em;
 }
 
-.tile-img {
-    width: 75%;
+@media only screen and (max-width: 700px) {
+    .tile-img {
+        width: 80%;
+        height: 4em;
+    }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
     .tile-img {
+        width: 80%;
+        height: 2em;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .tile-img {
+        width: 80%;
+        height: 4em;
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+    .tile-img {
+        width: 80%;
+        height: 7em;;
+    }
+}
+
+@media only screen and (max-width: 1800px) {
+    .tile-img {
+        width: 80%;
         height: 10em;
     }
 }
 
-@media only screen and (min-width: 601px) {
+@media only screen and (min-width: 1801px) {
     .tile-img {
-        height: 13em;
+        width: 80%;
+        height: 18em;
     }
 }
