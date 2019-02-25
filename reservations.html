@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 </head>
 <body>
   <!-- Navbar -->
@@ -42,118 +43,127 @@
     </div>
     <div class="row text-center reservation">
       <h1 class="reservation-header">Make a Reservation</h1>
-      <form class="reservation-form" action="#" method="post">
-        <fieldset>
-          <legend>Contact Information</legend>
-          <label for="firstname">First Name:</label>
-          <input type="text" id="firstname" name="firstname"><br><br>
-          <label for="middlename">Middle Name:</label>
-          <input type="text" id="middlename" name="middlename"><br><br>
-          <label for="lastname">Last Name:</label>
-          <input type="text" id="lastname" name="lastname"><br><br>
-          <label for="phone">Phone: </label>
-          <input type="tel" name="phone"><br><br>
-          <label for="email">Email: </label>
-          <input type="email" name="email"><br><br>
-        </fieldset>
+      <form class="reservation-form" action="server-side/form-submit.php" method="post">
+        <div ng-app="mainApp" ng-controller="resCtrl">
+          <fieldset>
+            <legend>Contact Information</legend>
+            <label for="firstname">First Name:</label>
+            <input type="text" id="firstname" name="firstname"><br><br>
+            <label for="middlename">Middle Name:</label>
+            <input type="text" id="middlename" name="middlename"><br><br>
+            <label for="lastname">Last Name:</label>
+            <input type="text" id="lastname" name="lastname"><br><br>
+            <label for="phone">Phone: </label>
+            <input type="tel" name="phone"><br><br>
+            <label for="email">Email: </label>
+            <input type="email" name="email"><br><br>
+          </fieldset>
 
-        <fieldset>
-          <legend>Destination Information</legend>
-          <label for="destination">Desired Destination:</label>
-          <select name="destination" id="destination">
-            <option value="argentina">Argentina</option>
-            <option value="barcelona">Barcelona</option>
-            <option value="brussels">Brussels</option>
-            <option value="florence">Florence</option>
-            <option value="jamaica">Jamaica</option>
-            <option value="madrid">Madrid</option>
-            <option value="newzealand">New Zealand</option>
-            <option value="paris">Paris</option>
-            <option value="signapore">Signapore</option>
-            <option value="tahiti">Tahiti</option>
-          </select><br><br>
-          <label for="depart-date">Departure Date: </label>
-          <input type="date" name="depart-date" id="depart-date"><br><br>
-          <label for="return-date">Return Date: </label>
-          <input type="date" name="return-date" id="return-date"><br><br>
-          <label for="needed">Amenities Needed</label><br>
-          <input type="checkbox" name="needed" value="flight"> Flight<br>
-          <input type="checkbox" name="needed" value="hotel"> Hotel<br>
-          <input type="checkbox" name="needed" value="boarding"> Pet Boarding<br>
-          <input type="checkbox" name="needed" value="car"> Rental Car<br><br>
-        </fieldset>
-
-        <fieldset>
-          <legend>Billing Information</legend>
-          <label for="line1">Address Line 1:</label>
-          <input type="text" id="line1" name="line1"><br><br>
-          <label for="line2">Address Line 2:</label>
-          <input type="text" id="line2" name="line2"><br><br>
-          <label for="city">City: </label>
-          <input type="text" name="city"><br><br>
-          <label for="state">State: </label>
-          <select name="state" id="state">
-              <option value="AL">Alabama</option>
-              <option value="AK">Alaska</option>
-              <option value="AZ">Arizona</option>
-              <option value="AR">Arkansas</option>
-              <option value="CA">California</option>
-              <option value="CO">Colorado</option>
-              <option value="CT">Connecticut</option>
-              <option value="DE">Delaware</option>
-              <option value="DC">District Of Columbia</option>
-              <option value="FL">Florida</option>
-              <option value="GA">Georgia</option>
-              <option value="HI">Hawaii</option>
-              <option value="ID">Idaho</option>
-              <option value="IL">Illinois</option>
-              <option value="IN">Indiana</option>
-              <option value="IA">Iowa</option>
-              <option value="KS">Kansas</option>
-              <option value="KY">Kentucky</option>
-              <option value="LA">Louisiana</option>
-              <option value="ME">Maine</option>
-              <option value="MD">Maryland</option>
-              <option value="MA">Massachusetts</option>
-              <option value="MI">Michigan</option>
-              <option value="MN">Minnesota</option>
-              <option value="MS">Mississippi</option>
-              <option value="MO">Missouri</option>
-              <option value="MT">Montana</option>
-              <option value="NE">Nebraska</option>
-              <option value="NV">Nevada</option>
-              <option value="NH">New Hampshire</option>
-              <option value="NJ">New Jersey</option>
-              <option value="NM">New Mexico</option>
-              <option value="NY">New York</option>
-              <option value="NC">North Carolina</option>
-              <option value="ND">North Dakota</option>
-              <option value="OH">Ohio</option>
-              <option value="OK">Oklahoma</option>
-              <option value="OR">Oregon</option>
-              <option value="PA">Pennsylvania</option>
-              <option value="RI">Rhode Island</option>
-              <option value="SC">South Carolina</option>
-              <option value="SD">South Dakota</option>
-              <option value="TN">Tennessee</option>
-              <option value="TX">Texas</option>
-              <option value="UT">Utah</option>
-              <option value="VT">Vermont</option>
-              <option value="VA">Virginia</option>
-              <option value="WA">Washington</option>
-              <option value="WV">West Virginia</option>
-              <option value="WI">Wisconsin</option>
-              <option value="WY">Wyoming</option>
+          <fieldset>
+            <legend>Destination Information</legend>
+            <label for="destination">Desired Destination:</label>
+            
+            <select name="destination" id="destination" ng-model="selectedDestination" ng-options="x.location for x in destinations" ng-click="hideWarning()">
+              <option value="">Select Option</option>
             </select><br><br>
-            <label for="zip">Zip Code: </label>
-            <input type="text" name="zip" id="zip"><br><br>
 
-        </fieldset>
+            <label for="depart-date">Departure Date: </label>
+            <input type="date" name="depart-date" id="depart-date"><br><br>
+            <label for="return-date">Return Date: </label>
+            <input type="date" name="return-date" id="return-date"><br><br>
+            <label for="needed">Amenities Needed</label><br>
+            <input type="checkbox" name="needed" value="flight"> Flight &nbsp;
+            <input type="checkbox" name="needed" value="hotel"> Hotel &nbsp;
+            <input type="checkbox" name="needed" value="boarding"> Pet Boarding &nbsp;
+            <input type="checkbox" name="needed" value="car"> Rental Car<br><br>
 
-        <button class="button-submit" style="color:darkblue;font-size:1.25em;">
-          <b>See Reservations</b>
-        </button><br><br>
+            <label for="activities">Desired Activities</label><br>
+            <p ng-hide="hider" style="font-weight:bolder;color:darkblue;">Select a city to see available activities!</p>
+            <div ng-hide="destHider" ng-model="selectedDestination" ng-repeat="activity in selectedDestination.activities">
+              <input type="checkbox" name="activitySelect" value="{{ activity }}"> {{ activity }}<br>
+            </div>
+            <br><br>
 
+            <script src="client-side/controllers/res-control.js"></script>
+
+          </fieldset>
+
+          <fieldset>
+            <legend>Billing Information</legend>
+            <label for="line1">Address Line 1:</label>
+            <input type="text" id="line1" name="line1"><br><br>
+            <label for="line2">Address Line 2:</label>
+            <input type="text" id="line2" name="line2"><br><br>
+            <label for="city">City: </label>
+            <input type="text" name="city"><br><br>
+            <label for="state">State: </label>
+            <select name="state" id="state">
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA">California</option>
+                <option value="CO">Colorado</option>
+                <option value="CT">Connecticut</option>
+                <option value="DE">Delaware</option>
+                <option value="DC">District Of Columbia</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="HI">Hawaii</option>
+                <option value="ID">Idaho</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NV">Nevada</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NM">New Mexico</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="ND">North Dakota</option>
+                <option value="OH">Ohio</option>
+                <option value="OK">Oklahoma</option>
+                <option value="OR">Oregon</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="SD">South Dakota</option>
+                <option value="TN">Tennessee</option>
+                <option value="TX">Texas</option>
+                <option value="UT">Utah</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WA">Washington</option>
+                <option value="WV">West Virginia</option>
+                <option value="WI">Wisconsin</option>
+                <option value="WY">Wyoming</option>
+              </select><br><br>
+              <label for="zip">Zip Code: </label>
+              <input type="text" name="zip" id="zip"><br><br>
+
+          </fieldset>
+
+          <button class="button-submit" style="color:darkblue;">
+            <b>See Reservations</b>
+          </button>
+          <br><br>
+          <button class="button-reset" type="reset" style="color:darkblue;" ng-click="resetActivities()" ng-model="selectedDestination">
+            <b>Reset</b>
+          </button>
+          <br><br>
+        </div>
       </form>
     </div>
     <div class="row text-center">

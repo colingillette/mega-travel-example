@@ -2,12 +2,32 @@
     background-color: white;
 }
 
+.button-reset {
+    background-color: white;
+    border-color: darkblue;
+    border-radius: 10em;
+    font-size: 1.75em;
+    margin-top: 1em;
+    padding-left: .5em;
+    padding-right: .5em;
+}
+
+.button-reset:hover {
+    background-color: lightcoral;
+}
+
 .button-submit {
-    width: 12em;
-    height: 3em;
     border-radius: 10em;
     background-color: rgb(252, 119, 30);
     border-color: darkblue;
+    font-size: 1.75em;
+    margin-top: 1em;
+    padding-left: 1.25em;
+    padding-right: 1.25em;
+}
+
+.button-submit:hover {
+    background-color: rgb(253, 186, 142);
 }
 
 .caption-right {
