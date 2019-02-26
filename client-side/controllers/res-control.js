@@ -5,7 +5,7 @@ app.controller('resCtrl', function($scope) {
     {location: "Vancouver, Canada", activities: ["Sailing", "Beach", "Hiking", "Museums", "Boating"]},
     {location: "New York City, United States", activities: ["City Tours", "Parks and Recreation", "Museums", "Theatre"]},
     {location: "Berlin, Germany", activities: ["City Tours", "Cycling", "Museums"]},
-    {location: "Cancun, Mexico", activities: ["City Tours", "Sports", "Cycling", "Museums", "Boating"]}
+    {location: "Cancun, Mexico", activities: ["Parks and Recreation", "Beaches", "Boating", "Snorkeling"]}
   ];
   $scope.hider = false;
   $scope.destHider = true;
