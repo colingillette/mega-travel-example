@@ -48,15 +48,15 @@
           <fieldset>
             <legend>Contact Information</legend>
             <label for="firstname">First Name:</label>
-            <input type="text" id="firstname" name="firstname"><br><br>
+            <input type="text" id="firstname" name="firstname" required><br><br>
             <label for="middlename">Middle Name:</label>
             <input type="text" id="middlename" name="middlename"><br><br>
             <label for="lastname">Last Name:</label>
-            <input type="text" id="lastname" name="lastname"><br><br>
+            <input type="text" id="lastname" name="lastname" required><br><br>
             <label for="phone">Phone: </label>
-            <input type="tel" name="phone"><br><br>
+            <input type="tel" name="phone" required><br><br>
             <label for="email">Email: </label>
-            <input type="email" name="email"><br><br>
+            <input type="email" name="email" required><br><br>
           </fieldset>
 
           <fieldset>
@@ -72,15 +72,15 @@
             <label for="return-date">Return Date: </label>
             <input type="date" name="return-date" id="return-date"><br><br>
             <label for="needed">Amenities Needed</label><br>
-            <input type="checkbox" name="needed" value="flight"> Flight &nbsp;
-            <input type="checkbox" name="needed" value="hotel"> Hotel &nbsp;
-            <input type="checkbox" name="needed" value="boarding"> Pet Boarding &nbsp;
-            <input type="checkbox" name="needed" value="car"> Rental Car<br><br>
+            <input type="checkbox" name="needed[]" value="flight"> Flight &nbsp;
+            <input type="checkbox" name="needed[]" value="hotel"> Hotel &nbsp;
+            <input type="checkbox" name="needed[]" value="boarding"> Pet Boarding &nbsp;
+            <input type="checkbox" name="needed[]" value="car"> Rental Car<br><br>
 
             <label for="activities">Desired Activities</label><br>
             <p ng-hide="hider" style="font-weight:bolder;color:darkblue;">Select a city to see available activities!</p>
             <div ng-hide="destHider" ng-model="selectedDestination" ng-repeat="activity in selectedDestination.activities">
-              <input type="checkbox" name="activitySelect" value="{{ activity }}"> {{ activity }}<br>
+              <input type="checkbox" name="activitySelect[]" value="{{ activity }}"> {{ activity }}<br>
             </div>
             <br><br>
 
@@ -91,13 +91,13 @@
           <fieldset>
             <legend>Billing Information</legend>
             <label for="line1">Address Line 1:</label>
-            <input type="text" id="line1" name="line1"><br><br>
+            <input type="text" id="line1" name="line1" required><br><br>
             <label for="line2">Address Line 2:</label>
-            <input type="text" id="line2" name="line2"><br><br>
+            <input type="text" id="line2" name="line2" required><br><br>
             <label for="city">City: </label>
-            <input type="text" name="city"><br><br>
+            <input type="text" name="city" required><br><br>
             <label for="state">State: </label>
-            <select name="state" id="state">
+            <select name="state" id="state" required>
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
                 <option value="AZ">Arizona</option>
@@ -151,7 +151,7 @@
                 <option value="WY">Wyoming</option>
               </select><br><br>
               <label for="zip">Zip Code: </label>
-              <input type="text" name="zip" id="zip"><br><br>
+              <input type="text" name="zip" id="zip" required><br><br>
 
           </fieldset>
 

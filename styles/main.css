@@ -36,6 +36,10 @@
     font-size: 1.5em;
 }
 
+.failure-header {
+    color: rgb(252, 119, 30);
+}
+
 form {
     margin-top: 3em;
 }
