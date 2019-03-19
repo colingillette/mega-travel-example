@@ -64,23 +64,23 @@
             <label for="destination">Desired Destination:</label>
             
             <select name="destination" id="destination" ng-model="selectedDestination" ng-options="x.location for x in destinations" ng-click="hideWarning()">
-              <option value="">Select Option</option>
+              <option value="{{ x.location }}">Select Option</option>
             </select><br><br>
 
             <label for="depart-date">Departure Date: </label>
-            <input type="date" name="depart-date" id="depart-date"><br><br>
+            <input type="date" name="depart-date" id="depart-date" required><br><br>
             <label for="return-date">Return Date: </label>
-            <input type="date" name="return-date" id="return-date"><br><br>
+            <input type="date" name="return-date" id="return-date" required><br><br>
             <label for="needed">Amenities Needed</label><br>
-            <input type="checkbox" name="needed[]" value="flight"> Flight &nbsp;
-            <input type="checkbox" name="needed[]" value="hotel"> Hotel &nbsp;
-            <input type="checkbox" name="needed[]" value="boarding"> Pet Boarding &nbsp;
-            <input type="checkbox" name="needed[]" value="car"> Rental Car<br><br>
+            <input type="checkbox" name="needed[]" value="Flight"> Flight &nbsp;
+            <input type="checkbox" name="needed[]" value="Hotel"> Hotel &nbsp;
+            <input type="checkbox" name="needed[]" value="Boarding"> Pet Boarding &nbsp;
+            <input type="checkbox" name="needed[]" value="Car"> Rental Car<br><br>
 
             <label for="activities">Desired Activities</label><br>
             <p ng-hide="hider" style="font-weight:bolder;color:darkblue;">Select a city to see available activities!</p>
             <div ng-hide="destHider" ng-model="selectedDestination" ng-repeat="activity in selectedDestination.activities">
-              <input type="checkbox" name="activitySelect[]" value="{{ activity }}"> {{ activity }}<br>
+              <input type="checkbox" name="activities[]" value="{{ activity }}"> {{ activity }}<br>
             </div>
             <br><br>
 
@@ -93,7 +93,7 @@
             <label for="line1">Address Line 1:</label>
             <input type="text" id="line1" name="line1" required><br><br>
             <label for="line2">Address Line 2:</label>
-            <input type="text" id="line2" name="line2" required><br><br>
+            <input type="text" id="line2" name="line2"><br><br>
             <label for="city">City: </label>
             <input type="text" name="city" required><br><br>
             <label for="state">State: </label>

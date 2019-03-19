@@ -1,61 +1,33 @@
 <?php
   // Get variables from reservations.html
-  if (!empty($_POST))
-  {
-    $firstname = test_input($_POST["firstname"]);
-    $lastname = test_input($_POST["lastname"]);
-    $middle = test_input($POST["middlename"]);
-    $phone = test_input($_POST["phone"]);
-    $email = test_input($_POST["email"]);
-    $destination = test_input($_POST["destination"]);
-    $depart = test_input($_POST["depart-date"]);
-    $return = test_input($_POST["return-date"]);
-    $amenities = test_input($_POST["needed"]);
-    $activities = test_input($_POST["activitySelect[]"]);
-    $line1 = test_input($_POST["line1"]);
-    $line2 = test_input($_POST["line2"]);
-    $city = test_input($_POST["city"]);
-    $state = test_input($_POST["state"]);
-    $zip = test_input($_POST["zip"]);
-  }
+  $firstname = test_input($_POST["firstname"]);
+  $lastname = test_input($_POST["lastname"]);
+  $middle = test_input($POST["middlename"]);
+  $phone = test_input($_POST["phone"]);
+  $email = test_input($_POST["email"]);
+  $depart = test_input($_POST["depart-date"]);
+  $return = test_input($_POST["return-date"]);
+  $amenities = $_POST["needed"];
+  $activities = $_POST["activities"];
+  $line1 = test_input($_POST["line1"]);
+  $line2 = test_input($_POST["line2"]);
+  $city = test_input($_POST["city"]);
+  $state = test_input($_POST["state"]);
+  $zip = test_input($_POST["zip"]);
+  $destination = (string)test_input($_POST["destination"]);
+  $destination = get_destination($destination);
 
-  create_headers();
-
-  if (!isset($destination) || !isset(amenities))
-  {
-    display_error();
-  }
-  else
-  {
-    display_page();
-  }
-
-  create_enders();
-
-  /*
-    Functions
-  */
-
-  function test_input($data) 
-  {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-  }
-
-  function create_headers()
-  {
-    echo <<<END
+  echo <<<END
+    <!DOCTYPE html>    
     <html>
     <head>
       <meta charset="utf-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <title>Reservations</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" type="text/css" media="screen" href="styles/nav.css">
-      <link rel="stylesheet" type="text/css" media="screen" href="styles/main.css">
-      <link rel="stylesheet" type="text/css" media="screen" href="styles/footer.css">
+      <link rel="stylesheet" type="text/css" media="screen" href="/Gillette_MegaTravel3/styles/nav.css">
+      <link rel="stylesheet" type="text/css" media="screen" href="/Gillette_MegaTravel3/styles/main.css">
+      <link rel="stylesheet" type="text/css" media="screen" href="/Gillette_MegaTravel3/styles/footer.css">
       <link rel="shortcut icon" href="img/logo.PNG" type="image/png">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -85,8 +57,58 @@
       </nav>
     
       <div class="col-sm-2"></div>
-      <div class="col-sm-8" style="background-color:white;">
+      <div class="col-sm-8" style="background-color:white;text-align:center;">
 END;
+
+  if (!isset($destination) || !isset($amenities))
+  {
+    display_error();
+  }
+  else
+  {
+    echo "<h1 class='reservation-header'>Your Reservation</h1>";
+    echo "<br><br>";
+    echo "<p style='font-weight: bold; font-size:2em;'>";
+      echo "$firstname ";
+      if (isset($middlename)) { echo "$middlename "; }
+      echo "$lastname ";
+    echo "</p>";
+    echo "<h3>Contact Information</h3>";
+    echo "<p>Phone: <b>$phone</b></p>";
+    echo "<p>Email: <b>$email</b></p>";
+    echo "<p>$line1<br>";
+    if (isset($line2)) { echo "$line2<br>"; }
+    echo "$city, $state $zip</p>";
+    echo "<h3>Desitnation</h3>";
+    echo "<p>$destination</p>";
+    echo "<p>$depart - $return</p>";
+    echo "<h3>Amenities</h3>";
+    foreach ($amenities as $amenity)
+    {
+      echo "<p>$amenity</p>";
+    }
+    if (isset($activities))
+    {
+      echo "<h3>Activities</h3>";
+      foreach ($activities as $activity)
+      {
+        echo "<p>$activity</p>"; 
+      }
+    }
+  }
+
+  create_enders();
+
+  /*
+    Functions
+  */
+
+  function test_input($data) 
+  {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
   }
 
   function display_error()
@@ -99,50 +121,9 @@ END;
 END;
   }
 
-  function display_page()
-  {
-    echo "<h1 class='reservation-header'>Your Reservation</h1>";
-    echo "<p>"
-      echo "$firstname ";
-      if (isset($middlename)) { echo "$middlename "; }
-      echo "$lastname ";
-    echo "</p>"
-    echo "<h3>Contact Information</h3>";
-    echo "<p>Phone: $phone ";
-    echo "Email: $email</p>";
-    echo "<p>$line1</p>";
-    echo "<p>$line2</p>";
-    echo "<p>$city, $state $zip</p>";
-    echo "<h3>Desitnation</h3>";
-    echo "<p>$destination</p>";
-    echo "<p>$depart - $return</p>";
-    echo "<ul>";
-    for ($amenities as $amenity)
-    {
-      echo "<li>$amenity</li>";
-    }
-    echo "</ul>";
-    if (isset($activities))
-    {
-      echo "<ul>";
-      for ($activities as $activity)
-      {
-        echo "<li>$activity</li>"; 
-      }
-      echo "</ul>";
-    }
-  }
-
   function create_enders()
   {
     echo <<<END
-          </div>
-          <div class="row text-center">
-            <div class="footer text-center">
-              <footer>
-                  <p class="footer-text">Site Powered by <a id="cg-link" href="https://github.com/colingillette" target="_blank">Colin Gillette</a>.</p>
-                </footer>
-            </div>
           </div>
         </div>
         <div class="col-sm-2"></div>
@@ -150,5 +131,31 @@ END;
       </body>
       </html>
 END;
+  }
+
+  function get_destination($data)
+  {
+    switch ($data)
+    {
+      case "object:3":
+        $value = "Brisbaine, Australia";
+        break;
+      case "object:4":
+        $value = "Vancouver, Canada";
+        break;
+      case "object:5":
+        $value = "New York City, United States";
+        break;
+      case "object:6":
+        $value = "Berlin, Germany";
+        break;
+      case "object:7":
+        $value = "Cancun, Mexico";
+        break;
+      default:
+        $value = "Brisbaine, Australia";
+    }
+
+    return $value;
   }
 ?>
