@@ -1,4 +1,8 @@
 <?php
+  // Require our classes so that we can better store variables
+  require_once('address.php');
+  require_once('reservation.php');
+  
   // Get variables from reservations.html
   $firstname = test_input($_POST["firstname"]);
   $lastname = test_input($_POST["lastname"]);
@@ -16,6 +20,31 @@
   $zip = test_input($_POST["zip"]);
   $destination = (string)test_input($_POST["destination"]);
   $destination = get_destination($destination);
+  $adults = test_input($POST["adults"]);
+  $kids = test_input($POST["kids"]);
+
+  // Inititalize address and reservation objects
+  $address = new Address($line1, $city, $state, $zip);
+  if (isset($line2))
+  {
+    $address->set_line2($line2);
+  }
+
+  $reservation = new Reservation($firstname, $lastname, $email, $phone, $depart, $return, $amenities, $address, $destination, $adults, $kids);
+  if (isset($middle))
+  {
+    $reservation->set_middlename($middle);
+  }
+  if (isset($activities))
+  {
+    $reservation->set_activities($activities);
+  }
+
+  /*
+    Main Body
+  */
+
+  store_reservation($reservation);
 
   echo <<<END
     <!DOCTYPE html>    
@@ -69,28 +98,28 @@ END;
     echo "<h1 class='reservation-header'>Your Reservation</h1>";
     echo "<br><br>";
     echo "<p style='font-weight: bold; font-size:2em;'>";
-      echo "$firstname ";
-      if (isset($middlename)) { echo "$middlename "; }
-      echo "$lastname ";
+      echo "$reservation->firstname ";
+      if ($reservation->middlename_exists()) { echo "$reservation->middlename "; }
+      echo "$reservation->lastname ";
     echo "</p>";
     echo "<h3>Contact Information</h3>";
-    echo "<p>Phone: <b>$phone</b></p>";
-    echo "<p>Email: <b>$email</b></p>";
-    echo "<p>$line1<br>";
-    if (isset($line2)) { echo "$line2<br>"; }
-    echo "$city, $state $zip</p>";
+    echo "<p>Phone: <b>$reservation->phone</b></p>";
+    echo "<p>Email: <b>$reservation->email</b></p>";
+    echo "<p>$address->line1<br>";
+    if ($address->line2_exists()) { echo "$address->line2<br>"; }
+    echo "$address->city, $address->state $address->zip</p>";
     echo "<h3>Desitnation</h3>";
-    echo "<p>$destination</p>";
-    echo "<p>$depart - $return</p>";
+    echo "<p>$reservation->destination</p>";
+    echo "<p>$reservation->depart - $reservation->return</p>";
     echo "<h3>Amenities</h3>";
-    foreach ($amenities as $amenity)
+    foreach ($reservation->amenities as $amenity)
     {
       echo "<p>$amenity</p>";
     }
-    if (isset($activities))
+    if ($reservation->activities_exists())
     {
       echo "<h3>Activities</h3>";
-      foreach ($activities as $activity)
+      foreach ($reservation->activities as $activity)
       {
         echo "<p>$activity</p>"; 
       }
@@ -157,5 +186,67 @@ END;
     }
 
     return $value;
+  }
+
+  function store_reservation($reservation)
+  {
+    // Server Credentials and connection
+    $servername = "localhost";
+    $sqlusername = "insert";
+    $password = "insert";
+    $dbname = "MegaTravel";
+    $conn = new mysqli($servername, $sqlusername, $password, $dbname);
+
+    // Get correct name
+    if ($reservation->middlename_exists())
+    {
+      $fullname = "$reservation->firstname $reservation->middlename $reservation->lastname";
+    }
+    else
+    {
+      $fullname = "$reservation->firstname $reservation->lastname";
+    }
+
+    // Prepare appropriate statement
+    if ($reservation->activities_exists())
+    {
+      $activities = "";
+      foreach($reservation->activities as $act)
+      {
+        $activities .= "$act ";
+      }
+
+      $statement = "INSERT INTO MegaTravel.Reservations (name, phone, email, num_adults, num_kids, destination, depart_date, return_date, activities) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+      $sql = mysqli_prepare($conn, $statement);
+      mysqli_bind_param($sql, 'sssiissss', $name, $phone, $email, $adults, $kids, $depart, $return, $acts);
+      $name = $fullname;
+      $phone = $reservation->phone;
+      $email = $reservation->email;
+      $adults = $reservation->numadults;
+      $kids = $reservation->numkids;
+      $depart = $reservation->departDate;
+      $return = $reservation->returnDate;
+      $acts = $activities;
+    }
+    else
+    {
+      $statement = "INSERT INTO MegaTravel.Reservations (name, phone, email, num_adults, num_kids, destination, depart_date, return_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+      $sql = mysqli_prepare($conn, $statement);
+      mysqli_bind_param($sql, 'sssiisss', $name, $phone, $email, $adults, $kids, $depart, $return);
+      $name = $fullname;
+      $phone = $reservation->phone;
+      $email = $reservation->email;
+      $adults = $reservation->numadults;
+      $kids = $reservation->numkids;
+      $depart = $reservation->departDate;
+      $return = $reservation->returnDate;
+    }
+
+    // Execute statement
+    mysqli_stmt_execute($sql);
+    mysqli_stmt_close($sql);
+
+    // Close Database
+    mysqli_close($conn);
   }
 ?>

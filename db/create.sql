@@ -1,0 +1,1 @@
+-- Columns: Name, phone, email, #adults, #children, destination, depart date, return date, activities
