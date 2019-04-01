@@ -1,11 +1,11 @@
 -- Schema and table creation scripts pulled from MySQL Workbench
 -- These can be ran on any machine to replicate our simple database
 
-CREATE DATABASE `PortalDB` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE `megatravel` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
 DROP TABLE `Reservations`;
 
-CREATE TABLE `Reservations` (
+CREATE TABLE `reservations` (
     `reservation_id` int(11) NOT NULL AUTO_INCREMENT,
     `name` varchar(60) NOT NULL,
     `phone` varchar(10) NOT NULL,
@@ -15,6 +15,6 @@ CREATE TABLE `Reservations` (
     `destination` varchar(45) NOT NULL,
     `depart_date` datetime NOT NULL,
     `return_date` datetime NOT NULL,
-    `activites` varchar(200),
+    `activities` varchar(200),
     PRIMARY KEY (`reservation_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
