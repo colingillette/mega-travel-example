@@ -38,7 +38,7 @@
 
   <div class="col-sm-2"></div>
   <div class="col-sm-8 background-white">
-    <h1 class="reservation-header">Current Reservations</h1>
+    <h1 class="reservation-header" style="text-align: center; margin-top: 1em;">Current Reservations</h1>
     <div class="body">
       <?php display_reservations() ?>
     </div>
@@ -57,7 +57,7 @@
     $dbname = "megatravel";
     $conn = new mysqli($servername, $sqlusername, $password, $dbname);
 
-    $sql = "SELECT * FROM megatravel.Reservations";
+    $sql = "SELECT * FROM megatravel.Reservations ORDER BY depart_date";
     $results = mysqli_query($conn, $sql);
     if (mysqli_num_rows($results)) {
       while ($row = mysqli_fetch_assoc($results)) {
@@ -72,7 +72,7 @@
   // Do this for each record
   function show_record($row) {
     
-    // Get variables
+    // Get base variables
     $name = $row["name"];
     $phone = $row["phone"];
     $email = $row["email"];
@@ -83,17 +83,20 @@
     $return_date = $row["return_date"];
     $activity_data = $row["activities"];
     
+    // Convert certain base variables to useful data
     $activities = activities_to_array($activity_data);
+    $depart_date = humanize_date($depart_date);
+    $return_date = humanize_date($return_date);
     
     echo "<div class='row'>";
-      echo "<div class='well'>";
-        echo "<p>$name</p>";
-        echo "<p>Phone: $phone</p>";
-        echo "<p>Email: $email</p>";
-        echo "<p>$adults Adults and $kids Kids</p>";
-        echo "<p>Destination: $destination</p>";
-        echo "<p>$depart_date - $return_date</p>";
-        echo "<h3 style='text-decoration: underline;'>Activities</h3>";
+      echo "<div class='well' style='text-align: center;'>";
+        echo "<p style='font-weight: bold; font-size: 1.5em;'>$name</p>";
+        echo "<p>Phone: <b>$phone</b></p>";
+        echo "<p>Email: <b>$email</b></p>";
+        echo "<p><b>$adults</b> Adult(s) and <b>$kids</b> Kid(s)</p>";
+        echo "<p>Destination: <b>$destination</b></p>";
+        echo "<p><b>$depart_date</b> - <b>$return_date</b></p>";
+        echo "<h4 style='text-decoration: underline; font-weight: bolder;'>Activities</h4>";
         foreach ($activities as $activity) {
           echo "<p>$activity</p>";
         }
@@ -120,5 +123,10 @@ END;
     else {
       return array($data);
     }
+  }
+
+  // Convert mysql date values to something easier to read
+  function humanize_date($date) {
+    return date("m-d-Y", strtotime($date));
   }
 ?>
