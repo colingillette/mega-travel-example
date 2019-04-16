@@ -30,7 +30,8 @@
         <ul class="nav navbar-nav">
           <li class="hover-active"><a href="index.html" style="color: black">Home</a></li>
           <li class="hover-active"><a href="about.html" style="color: black">About Us</a></li>
-          <li id="light-active"><a href="reservations.html" style="color: black">Reservations</a></li>
+          <li class="hover-active"><a href="reservations.html" style="color: black">Reservations</a></li>
+          <li id="light-active"><a href="admin.php" style="color: black">Administration</a></li>
         </ul>
       </div>
     </div>
