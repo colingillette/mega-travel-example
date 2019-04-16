@@ -50,6 +50,75 @@
 <?php
   // Controller that displays all available reservations
   function display_reservations() {
+    // Server Credentials
+    $servername = "localhost";
+    $sqlusername = "cag35";
+    $password = "cag35";
+    $dbname = "megatravel";
+    $conn = new mysqli($servername, $sqlusername, $password, $dbname);
+
+    $sql = "SELECT * FROM megatravel.Reservations";
+    $results = mysqli_query($conn, $sql);
+    if (mysqli_num_rows($results)) {
+      while ($row = mysqli_fetch_assoc($results)) {
+        show_record($row);
+      }
+    }
+    else {
+      no_records();
+    }
+  }
+
+  // Do this for each record
+  function show_record($row) {
     
+    // Get variables
+    $name = $row["name"];
+    $phone = $row["phone"];
+    $email = $row["email"];
+    $adults = $row["num_adults"];
+    $kids = $row["num_kids"];
+    $destination = $row["destination"];
+    $depart_date = $row["depart_date"];
+    $return_date = $row["return_date"];
+    $activity_data = $row["activities"];
+    
+    $activities = activities_to_array($activity_data);
+    
+    echo "<div class='row'>";
+      echo "<div class='well'>";
+        echo "<p>$name</p>";
+        echo "<p>Phone: $phone</p>";
+        echo "<p>Email: $email</p>";
+        echo "<p>$adults Adults and $kids Kids</p>";
+        echo "<p>Destination: $destination</p>";
+        echo "<p>$depart_date - $return_date</p>";
+        echo "<h3 style='text-decoration: underline;'>Activities</h3>";
+        foreach ($activities as $activity) {
+          echo "<p>$activity</p>";
+        }
+      echo "</div>";
+    echo "</div>";
+  }
+
+  // Do this if there are no records
+  function no_records() {
+    echo <<<END
+      <div class="well">
+        <p>
+          There are currently no reservations stored in the system.
+        </p>
+      </div>
+END;
+  }
+
+  // Convert activities to array
+  function activities_to_array($data) {
+    if (strpos($data, " ")) {
+      return explode(" ", $data);
+    }
+    else {
+      return array($data);
+    }
   }
 ?>
